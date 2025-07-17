@@ -1,27 +1,22 @@
-const http = require("http");
+const express = require("express");
 const fs = require("fs");
+const server = express();
 
-const port = 8000;
-
-const server = http.createServer((req, res) => {
-  let page = req.url;
-  if (page === "/index" || page === "/404") {
-    page = "";
-  } else if (page === "/") {
-    page = "/index";
-  }
-
-  fs.readFile(`./pages${page}.html`, (err, data) => {
-    if (err) {
-      res.writeHead(404);
-      fs.readFile("./pages/404.html", (err, data) => res.write(data));
-    } else {
-      res.writeHead(200);
-      res.write(data);
-    }
-  });
+server.get("/", (req, res) => {
+  res.sendFile(__dirname + "/pages/index.html");
+});
+server.get("/about", (req, res) => {
+  res.sendFile(__dirname + "/pages/about.html");
+});
+server.get("/contact-me", (req, res) => {
+  res.sendFile(__dirname + "/pages/contact-me.html");
 });
 
-server.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
+server.use((req, res, next) => {
+  res.status(404).sendFile(__dirname + "/pages/404.html")
+})
+
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+  console.log(`Started listening on port ${PORT}\nhttp://localhost:${PORT}`);
 });
