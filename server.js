@@ -16,6 +16,7 @@ const server = http.createServer((req, res) => {
       res.writeHead(404);
       fs.readFile("./pages/404.html", (err, data) => res.write(data));
     } else {
+      res.writeHead(200);
       res.write(data);
     }
   });
