@@ -1,0 +1,4 @@
+<%= message%>
+<p>users</p>
+<% users.forEach(name => { %> <%- include("../partials/user", {name: name})%> <%
+}); %>

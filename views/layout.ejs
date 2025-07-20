@@ -1,0 +1,13 @@
+<html>
+  <head>
+    <title><%= title || "My Lovely App" %></title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <%- include("partials/navbar", {links: links}) %>
+
+    <%- body %>
+ee
+    <%- include("partials/footer") %>
+  </body>
+</html>

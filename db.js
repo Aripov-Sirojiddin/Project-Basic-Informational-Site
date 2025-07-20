@@ -3,9 +3,16 @@ const authors = [
   { id: 2, name: "Christian" },
   { id: 3, name: "Jason" },
 ];
-
+async function getAllAuthors() {
+  return authors;
+}
 async function getAuthorById(authorId) {
-  return authors.find(author => author.id === authorId);
-};
+  return authors.find((author) => author.id === authorId);
+}
 
-module.exports = { getAuthorById };
+const users = ["Rose", "Cake", "Biff"];
+async function getAllUsers() {
+  return users;
+}
+
+module.exports = { getAllAuthors, getAuthorById, getAllUsers };
